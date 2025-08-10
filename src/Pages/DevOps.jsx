@@ -1,7 +1,7 @@
 import React from 'react';
 import { Server, Settings, ShieldCheck, RefreshCcw } from 'lucide-react';
 
-const devopsServices = [
+const DevOps = [
   {
     title: 'CI/CD Pipeline',
     description: 'Automate your software delivery with continuous integration and deployment pipelines.',
