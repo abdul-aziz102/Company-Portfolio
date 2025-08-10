@@ -1,7 +1,7 @@
 import React from 'react';
 import { Server, Settings, ShieldCheck, RefreshCcw } from 'lucide-react';
 
-const DevOps = [
+const devopsServices = [
   {
     title: 'CI/CD Pipeline',
     description: 'Automate your software delivery with continuous integration and deployment pipelines.',
@@ -24,7 +24,7 @@ const DevOps = [
   },
 ];
 
-const Devops = () => {
+const DevOps = () => {
   return (
     <div className="bg-[#ddfef8] text-[#1e293b] min-h-screen">
       {/* Hero Section */}
@@ -73,4 +73,4 @@ const Devops = () => {
   );
 };
 
-export default Devops;
+export default DevOps;

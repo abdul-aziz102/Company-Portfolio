@@ -15,8 +15,8 @@ import Portfolio from './Pages/Portfolio'
 import WebDevelopment from './Pages/WebDevelopment'
 import BrandingDesign from './Pages/BrandingDesign'
 import SeoMarketing from './Pages/SeoMarketing'
-import ResourceOutsourcing from './Pages/ResourceOutsourcing' // ✅ Match the actual file name exactly
-import Devops from './Pages/Devops'
+import ResourceOutsourcing from './Pages/ResourceOutsourcing' 
+import DevOps from './Pages/Devops'
 
 const App = () => {
   return (
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/branding-design" element={<BrandingDesign />} />
           <Route path="/seo-digital-marketing" element={<SeoMarketing />} />
           <Route path="/resource-outsourcing" element={<ResourceOutsourcing />} />
-          <Route path="/devops" element={<Devops />} /> {/* ✅ Case-sensitive fix */}
+          <Route path="/devops" element={<DevOps />} /> {/* ✅ Case-sensitive fix */}
         </Routes>
 
         <ChatbotWidget />
