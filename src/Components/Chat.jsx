@@ -89,6 +89,7 @@ hello: Hello How can I help You with MB Tech
 
       const aiMessage = { text: formattedText, sender: 'ai' };
       setMessages((prev) => [...prev, aiMessage]);
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setMessages((prev) => [
         ...prev,

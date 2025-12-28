@@ -7,7 +7,7 @@ import DigitalSolutions from '../Components/DigitalSolutions';
 import Index from '../Components/index';
 import StatsCounter from '../Components/StatsCounter';
 import TechStackVisualization from '../Components/TechStackVisualization';
-import ProcessTimeline from '../Components/ProcessTimeline';// ✅ MISSING IMPORT FIXED
+import ProcessTimeline from '../Components/ProcessTimeline';
 
 const Home = () => {
   return (
