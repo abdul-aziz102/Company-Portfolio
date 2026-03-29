@@ -1,6 +1,6 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -38,13 +38,7 @@ const ContactPage = () => {
       const result = await response.json();
       if (response.ok) {
         setSuccess("Message sent successfully!");
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          service: "",
-          message: ""
-        });
+        setFormData({ name: "", phone: "", email: "", service: "", message: "" });
       } else {
         setSuccess(result.message || "Failed to send message.");
       }
@@ -54,179 +48,213 @@ const ContactPage = () => {
     setLoading(false);
   };
 
+  const contactInfo = [
+    {
+      icon: <Mail size={20} />,
+      label: "Email",
+      value: "admin@registration.com",
+      href: "mailto:admin@registration.com",
+    },
+    {
+      icon: <Phone size={20} />,
+      label: "Phone",
+      value: "+1 (0) 0124 - 4039",
+      href: null,
+    },
+    {
+      icon: <MapPin size={20} />,
+      label: "Address",
+      value: "Office Street, City, Country",
+      href: null,
+    },
+  ];
+
+  const inputClass =
+    "w-full bg-[#111111] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-yellow-400/60 focus:ring-1 focus:ring-yellow-400/30 transition-all duration-200 text-sm";
+  const labelClass = "block text-gray-400 text-sm mb-2 font-medium";
+
   return (
-    <div className="bg-[#d5fff7] text-[#23194f] min-h-screen">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-b from-[#d5fff7] to-[#b8e8dd] py-24 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
+    <div className="bg-[#0d0d0d] text-white min-h-screen font-sans">
+      {/* grid texture */}
+      <div
+        className="fixed inset-0 opacity-[0.03] pointer-events-none z-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* ── Hero ── */}
+      <section className="relative py-28 px-6 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, rgba(250,204,21,0.07) 0%, transparent 70%)" }}
+        />
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            CONTACT <span className="text-sky-700">US</span>
-          </motion.h1>
-          <p className="text-xl text-[#23194f]/80 max-w-2xl mx-auto">
-            Get in touch with our team for instant service and support
-          </p>
+            <p className="text-yellow-400 text-sm uppercase tracking-widest font-semibold mb-4">
+              Let's Talk
+            </p>
+            <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tight mb-5">
+              CONTACT <span className="text-yellow-400">US</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+              Get in touch with our team for instant service and support
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Info & Form */}
-      <section className="py-16 px-6 bg-[#d5fff7]">
+      {/* ── Info & Form ── */}
+      <section className="py-16 px-6 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-sky-700">Get in Touch</h2>
+            <p className="text-yellow-400 text-sm uppercase tracking-widest font-semibold mb-3">
+              Reach Us
+            </p>
+            <h2 className="text-3xl font-extrabold uppercase mb-10">Get in Touch</h2>
 
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="bg-white p-3 rounded-full mr-4 shadow-sm">
-                  <Mail className="text-sky-700" size={20} />
+            <div className="space-y-6">
+              {contactInfo.map(({ icon, label, value, href }) => (
+                <div key={label} className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 bg-yellow-400/10 border border-yellow-400/20 rounded-xl flex items-center justify-center text-yellow-400 flex-shrink-0 group-hover:bg-yellow-400/20 transition-colors duration-200">
+                    {icon}
+                  </div>
+                  <div>
+                    <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-1">{label}</h3>
+                    {href ? (
+                      <a href={href} className="text-white font-medium hover:text-yellow-400 transition-colors">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-white font-medium">{value}</p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <a href="mailto:admin@registration.com" className="text-[#23194f]/80 hover:text-sky-700 transition">
-                    admin@registration.com
-                  </a>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              <div className="flex items-start">
-                <div className="bg-white p-3 rounded-full mr-4 shadow-sm">
-                  <Phone className="text-sky-700" size={20} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Phone</h3>
-                  <p className="text-[#23194f]/80">+1 (0) 0124 - 4039</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-white p-3 rounded-full mr-4 shadow-sm">
-                  <MapPin className="text-sky-700" size={20} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Address</h3>
-                  <p className="text-[#23194f]/80">Office Street, City, Country</p>
-                </div>
+            {/* decorative card */}
+            <div className="mt-12 bg-[#1a1a1a] border border-white/10 rounded-2xl p-6 relative overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none rounded-2xl"
+                style={{ background: "radial-gradient(circle at 100% 100%, rgba(250,204,21,0.06) 0%, transparent 60%)" }}
+              />
+              <p className="text-sm text-gray-400 leading-relaxed relative z-10">
+                We're ready to build, design, and grow with you. Whether it's tech, branding, or strategy — we've got you covered.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-yellow-400 text-sm font-semibold relative z-10">
+                Learn more <ArrowRight size={14} />
               </div>
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl border border-[#23194f]/20 shadow-lg"
+            className="relative bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 overflow-hidden"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">Send Us a Message</h2>
+            {/* glow */}
+            <div className="absolute inset-0 pointer-events-none rounded-2xl"
+              style={{ background: "radial-gradient(circle at 100% 0%, rgba(250,204,21,0.05) 0%, transparent 60%)" }}
+            />
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <h2 className="text-2xl font-extrabold uppercase mb-8 relative z-10">Send Us a Message</h2>
+
+            <form className="space-y-5 relative z-10" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-[#23194f]/80 mb-2">Your Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-[#d5fff7] border border-[#23194f]/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-700"
-                  placeholder="Enter your name"
-                />
+                <label htmlFor="name" className={labelClass}>Your Name</label>
+                <input type="text" id="name" value={formData.name} onChange={handleChange} required className={inputClass} placeholder="Enter your name" />
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-[#23194f]/80 mb-2">Your Phone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full bg-[#d5fff7] border border-[#23194f]/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-700"
-                  placeholder="Enter your phone number"
-                />
+                <label htmlFor="phone" className={labelClass}>Your Phone</label>
+                <input type="tel" id="phone" value={formData.phone} onChange={handleChange} className={inputClass} placeholder="Enter your phone number" />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-[#23194f]/80 mb-2">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-[#d5fff7] border border-[#23194f]/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-700"
-                  placeholder="Enter your email address"
-                />
+                <label htmlFor="email" className={labelClass}>Your Email</label>
+                <input type="email" id="email" value={formData.email} onChange={handleChange} required className={inputClass} placeholder="Enter your email address" />
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-[#23194f]/80 mb-2">Select a Service</label>
-                <select
-                  id="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-[#d5fff7] border border-[#23194f]/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-700"
-                >
-                  <option value="">-- Select a Service --</option>
-                  <option value="Branding & Design">Branding & Design</option>
-                  <option value="Website Development">Website Development</option>
-                  <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
-                  <option value="Resource Outsourcing">Resource Outsourcing</option>
-                  <option value="DevOps">DevOps</option>
+                <label htmlFor="service" className={labelClass}>Select a Service</label>
+                <select id="service" value={formData.service} onChange={handleChange} required className={inputClass}>
+                  <option value="" className="bg-[#111] text-gray-500">-- Select a Service --</option>
+                  <option value="Branding & Design" className="bg-[#111] text-white">Branding & Design</option>
+                  <option value="Website Development" className="bg-[#111] text-white">Website Development</option>
+                  <option value="SEO & Digital Marketing" className="bg-[#111] text-white">SEO & Digital Marketing</option>
+                  <option value="Resource Outsourcing" className="bg-[#111] text-white">Resource Outsourcing</option>
+                  <option value="DevOps" className="bg-[#111] text-white">DevOps</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-[#23194f]/80 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="4"
-                  className="w-full bg-[#d5fff7] border border-[#23194f]/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-700"
-                  placeholder="Enter your message"
-                ></textarea>
+                <label htmlFor="message" className={labelClass}>Message</label>
+                <textarea id="message" value={formData.message} onChange={handleChange} required rows="4" className={inputClass} placeholder="Enter your message" />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
-                className="bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-sky-800 transition flex items-center justify-center w-full"
                 disabled={loading}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg shadow-yellow-400/20 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? "Sending..." : "Send Message"}
-                <Send className="ml-2" size={18} />
-              </button>
+                <Send size={16} />
+              </motion.button>
 
               {success && (
-                <p className="text-center mt-4 text-green-600 font-medium">{success}</p>
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-center mt-2 text-sm font-medium ${success.includes("successfully") ? "text-emerald-400" : "text-red-400"}`}
+                >
+                  {success}
+                </motion.p>
               )}
             </form>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA / Footer */}
-      <section className="py-20 px-6 bg-[#d5fff7] text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Reach Us For Instant Service</h2>
-          <p className="text-lg text-[#23194f]/80">
-            We’re ready to build, design, and grow with you. Whether it’s tech, branding, or strategy — we’ve got you covered.
-          </p>
+      {/* ── CTA ── */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(250,204,21,0.04) 0%, transparent 70%)" }}
+        />
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight mb-5">
+              Reach Us For <span className="text-yellow-400">Instant Service</span>
+            </h2>
+            <p className="text-gray-400 text-lg leading-relaxed">
+              We're ready to build, design, and grow with you. Whether it's tech, branding, or strategy — we've got you covered.
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
   );
 };
+
 export default ContactPage;

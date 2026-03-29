@@ -1,41 +1,41 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Server, Smartphone, BarChart2, Cpu, Users, Code } from "lucide-react";
+import { Server, Smartphone, BarChart2, Cpu, Users, Code, ArrowRight } from "lucide-react";
 
 const ServicesPage = () => {
   const services = [
     {
-      icon: <Server className="text-sky-700" size={32} />,
+      icon: <Server className="text-yellow-400" size={28} />,
       title: "Hosting & Design",
       description: "Protect your business with expert branding, marketing and social guidance. We create strong, environmentally conscious digital presences.",
       highlights: ["Brand Identity", "Web Hosting", "UI/UX Design", "Environmental Compliance"]
     },
     {
-      icon: <Smartphone className="text-sky-700" size={32} />,
+      icon: <Smartphone className="text-yellow-400" size={28} />,
       title: "Mobility Development",
       description: "Our digital professionals develop cutting-edge solutions to enhance customer capabilities with improved search quality and performance.",
       highlights: ["Cross-Platform Apps", "Performance Optimization", "Search Integration"]
     },
     {
-      icon: <BarChart2 className="text-sky-700" size={32} />,
+      icon: <BarChart2 className="text-yellow-400" size={28} />,
       title: "SCO Digital Marketing",
       description: "Tailored digital marketing solutions featuring continuous services and leadership in media strategy for online audiences.",
       highlights: ["SEO Strategy", "Content Marketing", "Social Media Management"]
     },
     {
-      icon: <Code className="text-sky-700" size={32} />,
+      icon: <Code className="text-yellow-400" size={28} />,
       title: "Mobile App Development",
       description: "Seamless user experiences with feedback-driven development. Custom apps for teams, employees, and business growth.",
       highlights: ["iOS/Android", "User Testing", "Enterprise Solutions"]
     },
     {
-      icon: <Cpu className="text-sky-700" size={32} />,
+      icon: <Cpu className="text-yellow-400" size={28} />,
       title: "DevOps",
       description: "Efficiency improvements with wireless technology facilitate automation and agile performance for seamless business integration.",
       highlights: ["CI/CD Pipelines", "Cloud Infrastructure", "Automation"]
     },
     {
-      icon: <Users className="text-sky-700" size={32} />,
+      icon: <Users className="text-yellow-400" size={28} />,
       title: "Resource Outsourcing",
       description: "Accelerate innovative projects with operational support that ensures timely delivery through our network of specialists.",
       highlights: ["Team Augmentation", "Project Management", "Quality Assurance"]
@@ -43,29 +43,47 @@ const ServicesPage = () => {
   ];
 
   return (
-    <div className="bg-[#d5fff7] text-[#23194f]">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-[#d5fff7] to-[#b8e8dd] py-28 px-6">
-        <div className="max-w-7xl mx-auto text-center">
+    <div className="bg-[#0d0d0d] text-white font-sans">
+
+      {/* ── Hero Section ── */}
+      <section className="relative py-28 px-6 overflow-hidden">
+        {/* subtle grid texture */}
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* yellow glow top center */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, rgba(250,204,21,0.08) 0%, transparent 70%)" }}
+        />
+
+        <div className="max-w-7xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              OUR <span className="text-sky-700">SERVICES</span>
+            <p className="text-yellow-400 text-sm uppercase tracking-widest font-semibold mb-4">
+              What We Offer
+            </p>
+            <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tight mb-6">
+              OUR <span className="text-yellow-400">SERVICES</span>
             </h1>
-            <p className="text-xl text-[#23194f]/80 max-w-3xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
               Comprehensive solutions designed to elevate your digital presence and operational efficiency.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 px-6 bg-[#d5fff7]">
+      {/* ── Services Grid ── */}
+      <section className="py-20 px-6 bg-[#111111]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -73,59 +91,74 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-xl border border-[#23194f]/10 hover:border-sky-700 transition-all hover:shadow-lg"
+                className="relative bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 flex flex-col group hover:border-yellow-400/50 transition-all duration-300 overflow-hidden"
               >
-                <div className="flex flex-col h-full">
-                  <div className="mb-6">
-                    <div className="w-14 h-14 bg-[#d5fff7] rounded-lg flex items-center justify-center mb-4">
-                      {service.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                    <p className="text-[#23194f]/80 mb-4">{service.description}</p>
+                {/* hover glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: "radial-gradient(circle at 0% 100%, rgba(250,204,21,0.07) 0%, transparent 60%)" }}
+                />
+
+                <div className="mb-6 relative z-10">
+                  <div className="w-14 h-14 bg-yellow-400/10 rounded-xl flex items-center justify-center mb-5">
+                    {service.icon}
                   </div>
-                  <div className="mt-auto">
-                    <ul className="space-y-2">
-                      {service.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-center text-[#23194f]/80">
-                          <span className="w-1.5 h-1.5 bg-sky-700 rounded-full mr-2"></span>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                 </div>
+
+                <div className="mt-auto relative z-10">
+                  <ul className="space-y-2">
+                    {service.highlights.map((highlight, i) => (
+                      <li key={i} className="flex items-center text-gray-400 text-sm">
+                        <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-2 flex-shrink-0"></span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* bottom accent line */}
+                <div className="mt-6 h-px w-0 group-hover:w-full bg-yellow-400/40 transition-all duration-500 rounded-full relative z-10" />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Commitment Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* ── Commitment Section ── */}
+      <section className="py-24 px-6 bg-[#0d0d0d] relative overflow-hidden">
+        {/* background glow */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(250,204,21,0.05) 0%, transparent 70%)" }}
+        />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">
-              WE'RE <span className="text-sky-700">COMMITTED</span> TO DELIVER HIGH
+            <p className="text-yellow-400 text-sm uppercase tracking-widest font-semibold mb-4">
+              Our Promise
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight mb-6">
+              WE'RE <span className="text-yellow-400">COMMITTED</span> TO DELIVER HIGH
             </h2>
-            <p className="text-xl text-[#23194f]/80 mb-10">
+            <p className="text-gray-400 text-lg mb-10 leading-relaxed">
               Our 2020 procedures ensure better development processes and exceptional results for every client.
             </p>
-            <a 
-              href="https://sole.boy.com/oury-2020-procedures-your-better-development/" 
-              className="text-sky-700 hover:text-sky-800 inline-flex items-center"
+            <motion.a
+              href="https://sole.boy.com/oury-2020-procedures-your-better-development/"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 bg-yellow-400 text-black font-bold px-8 py-3 rounded-lg hover:bg-yellow-300 transition-colors shadow-lg shadow-yellow-400/20"
             >
               Learn about our procedures
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
+              <ArrowRight size={18} />
+            </motion.a>
           </motion.div>
         </div>
       </section>
